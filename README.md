@@ -12,15 +12,15 @@ The API mode depends on Gin to handle HTTP requests, it provides two endpoints:
 
 The server returns HTTP status codes in case of an error, the port can be configured via PORT environment variable (defaults to 8080).
 
-## Start the Server
+## Using the Server
 
-**Step 1:** In case the GIN framework is not installed, execute the following command before the start:
+In case the GIN framework is not installed, execute the following command before the start:
 
 ```bash
 go get github.com/gin-gonic/gin
 ```
 
-**Step 2** Started the server with
+#### Started the Server
 
 ```bash
 go run main.go
