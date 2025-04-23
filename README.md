@@ -20,24 +20,24 @@ In case the GIN framework is not installed, execute the following command before
 go get github.com/gin-gonic/gin
 ```
 
-#### Started the Server
+#### Start
 
 ```bash
 go run main.go
 ```
 
-#### HTTP Request
+#### API Mode
 
 ```bash
 curl http://localhost:8080/package/nginx
 ```
 
-#### CLI Request
+#### CLI Mode
 
 ```bash
 go run main.go cli nginx
 ```
 
-### Open issues
+## Open issues
 * Stop the server with CTRL-C - add graceful shutdown routine
 * Set port through config file
