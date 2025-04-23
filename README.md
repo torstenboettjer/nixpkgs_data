@@ -9,7 +9,7 @@ The program supports two modes of operation:
 * CLI Mode: Run with go run main.go cli <package-name> for command-line usage
 * API Mode: Default mode starts a web server
 
-The server now uses Gin to handle HTTP requests and provides two endpoints:
+The server uses Gin to handle HTTP requests and provides two endpoints:
 
 * Simple health check endpoint: `GET /health`
 * Get package information by name: `GET /package/:name`
@@ -41,3 +41,7 @@ curl http://localhost:8080/package/nginx
 ```bash
 go run main.go cli nginx
 ```
+
+#### Open issues
+* Stop the server with CTRL-C - add graceful shutdown routine
+* Set port through config file
