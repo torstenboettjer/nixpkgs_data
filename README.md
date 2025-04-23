@@ -14,13 +14,17 @@ The server now uses Gin to handle HTTP requests and provides two endpoints:
 * Simple health check endpoint: `GET /health`
 * Get package information by name: `GET /package/:name`
 
-The server returns HTTP status codes in case of an error, the port can be configured via PORT environment variable (defaults to 8080). It depends on the GIN framework, which is added by:
+The server returns HTTP status codes in case of an error, the port can be configured via PORT environment variable (defaults to 8080).
+
+## Start the Server
+
+The server depends on the GIN framework. In case it is not installed, the following command is required before the start.
 
 ```bash
 go get github.com/gin-gonic/gin
 ```
 
-### Start the server
+When GIN is installed it is started with:
 
 ```bash
 go run main.go
@@ -31,7 +35,6 @@ go run main.go
 ```bash
 curl http://localhost:8080/package/nginx
 ```
-
 
 ### CLI Request
 
