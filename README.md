@@ -30,18 +30,18 @@ go get github.com/gin-gonic/gin
 go run main.go
 ```
 
-### HTTP Request
+#### HTTP Request
 
 ```bash
 curl http://localhost:8080/package/nginx
 ```
 
-### CLI Request
+#### CLI Request
 
 ```bash
 go run main.go cli nginx
 ```
 
-#### Open issues
+### Open issues
 * Stop the server with CTRL-C - add graceful shutdown routine
 * Set port through config file
