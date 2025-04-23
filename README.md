@@ -18,13 +18,13 @@ The server returns HTTP status codes in case of an error, the port can be config
 
 ## Start the Server
 
-The server depends on the GIN framework. In case it is not installed, the following command is required before the start.
+**Step 1:** The GIN framework is required, in case it is not installed, execute the following command:
 
 ```bash
 go get github.com/gin-gonic/gin
 ```
 
-When GIN is installed it is started with:
+**Step 2** Started the server with
 
 ```bash
 go run main.go
