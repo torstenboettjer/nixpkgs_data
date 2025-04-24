@@ -2,13 +2,15 @@
 
 {
   # https://devenv.sh/basics/
-  env.GREET = "devenv";
+  env.GREET = "Nix Packages";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = with pkgs; [
+    git           # Go compiler
+  ];
 
   # https://devenv.sh/languages/
-  # languages.rust.enable = true;
+  languages.go.enable = true;
 
   # https://devenv.sh/processes/
   # processes.cargo-watch.exec = "cargo-watch";
@@ -41,8 +43,12 @@
   # https://devenv.sh/git-hooks/
   # git-hooks.hooks.shellcheck.enable = true;
 
-  # Enable Golang
-  languages.go.enable = true;
+  outputs =
+    let
+      name = "nixpkgs-meta";
+      version = "0.0.1";
+    in
+    { app = import ./default.nix { inherit pkgs name version; }; };
 
   # See full reference at https://devenv.sh/reference/options/
 }
