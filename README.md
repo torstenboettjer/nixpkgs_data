@@ -1,4 +1,4 @@
-# Nix Package Metadata
+# Nix Package Metadata Retrieval
 
 This is a small REST server, written in Golang, to retrieve nixkgs metadata. The program supports two modes of operation:
 
