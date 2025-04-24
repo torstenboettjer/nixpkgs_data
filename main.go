@@ -1,11 +1,15 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
 	"os/exec"
+	"os/signal"
+	"syscall"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -213,5 +217,35 @@ func main() {
 	}
 
 	// Start server
-	r.Run(":" + port)
+	// r.Run(":" + port)
+	// Create HTTP server
+	srv := &http.Server{
+		Addr:    ":" + port,
+		Handler: r,
+	}
+
+	// Start server in a goroutine
+	go func() {
+		fmt.Printf("Server listening on port %s\n", port)
+		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			fmt.Printf("listen: %s\n", err)
+		}
+	}()
+
+	// Graceful shutdown
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt, syscall.SIGTERM)
+	<-quit // Wait for interrupt signal
+
+	fmt.Println("Shutting down server...")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := srv.Shutdown(ctx); err != nil {
+		fmt.Printf("Server forced to shutdown: %v\n", err)
+	}
+
+	fmt.Println("Server exiting")
+
 }
