@@ -21,7 +21,7 @@ The program requires devenv.sh to be installed. In case the GIN framework is not
 go get github.com/gin-gonic/gin
 ```
 
-## Use
+## Retrieve Data
 
 The default mode starts a web server, data is retrieved via curl or through a web browser
 
