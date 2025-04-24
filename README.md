@@ -21,7 +21,7 @@ The program requires devenv.sh to be installed. In case the GIN framework is not
 go get github.com/gin-gonic/gin
 ```
 
-### Data Retrieval
+## Data Retrieval
 
 The default mode starts a web server, data is retrieved via curl or through a web browser
 
@@ -29,7 +29,7 @@ The default mode starts a web server, data is retrieved via curl or through a we
 curl http://localhost:8080/package/nginx
 ```
 
-#### CLI Mode
+### CLI Mode
 
 Data can also be retrieved from the command line, using the CLI mode.
 
