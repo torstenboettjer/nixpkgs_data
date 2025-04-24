@@ -2,7 +2,7 @@
 
 {
   # https://devenv.sh/basics/
-  env.GREET = "Nix Packages";
+  env.GREET = "Nix Packages Metadata";
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
@@ -42,7 +42,17 @@
   '';
 
   # https://devenv.sh/git-hooks/
-  # git-hooks.hooks.shellcheck.enable = true;
+  git-hooks.hooks = {
+    govet = {
+      enable = true;
+      pass_filenames = false;
+    };
+    gotest.enable = true;
+    golangci-lint = {
+      enable = true;
+      pass_filenames = false;
+    };
+  };
 
   outputs =
     let
