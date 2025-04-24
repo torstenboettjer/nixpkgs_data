@@ -10,6 +10,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Config struct {
+	Port string `json:"port"`
+}
+
 type Meta struct {
 	Description string        `json:"description"`
 	Homepage    string        `json:"homepage"`
@@ -19,18 +23,34 @@ type Meta struct {
 }
 
 type Result struct {
-	Name        string        `json:"name"`
-	Version     string        `json:"version"`
-	Source      string        `json:"source"`
-	Description string        `json:"description"`
-	Homepage    string        `json:"homepage"`
-	License     interface{}   `json:"license"`
-	Platforms   []string      `json:"platforms"`
-	Maintainers []string      `json:"maintainers"`
+	Name        string      `json:"name"`
+	Version     string      `json:"version"`
+	Source      string      `json:"source"`
+	Description string      `json:"description"`
+	Homepage    string      `json:"homepage"`
+	License     interface{} `json:"license"`
+	Platforms   []string    `json:"platforms"`
+	Maintainers []string    `json:"maintainers"`
 }
 
 type ErrorResponse struct {
 	Error string `json:"error"`
+}
+
+func loadConfig(filename string) (*Config, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	decoder := json.NewDecoder(file)
+	var config Config
+	err = decoder.Decode(&config)
+	if err != nil {
+		return nil, err
+	}
+	return &config, nil
 }
 
 func nixEval(attr string) ([]byte, error) {
@@ -179,9 +199,19 @@ func main() {
 	})
 
 	// Start server
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
+	// Load config
+	config, err := loadConfig("config.json")
+	if err != nil {
+		fmt.Printf("Warning: could not load config.json (%v), using default/ENV port\n", err)
 	}
+
+	// Use port from config, or fallback to ENV, then default
+	port := "8080"
+	if config != nil && config.Port != "" {
+		port = config.Port
+	} else if envPort := os.Getenv("PORT"); envPort != "" {
+		port = envPort
+	}
+
 	r.Run(":" + port)
 }
