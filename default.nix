@@ -7,4 +7,7 @@ pkgs.buildGoApplication {
     path = ./.;
     name = "source";
   };
+
+  ## remember to call 'gomod2nix' to generate this file
+  modules = ./gomod2nix.toml;
 }
