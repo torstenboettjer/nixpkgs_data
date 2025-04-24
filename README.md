@@ -36,6 +36,3 @@ Data can also be retrieved from the command line, using the CLI mode.
 ```bash
 go run main.go cli nginx
 ```
-
-## Open issues
-* Stop the server with CTRL-C - add graceful shutdown routine
