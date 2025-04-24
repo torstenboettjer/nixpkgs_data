@@ -6,7 +6,7 @@
 
   # https://devenv.sh/packages/
   packages = with pkgs; [
-    git           # Go compiler
+    git
     gomod2nix
   ];
 
