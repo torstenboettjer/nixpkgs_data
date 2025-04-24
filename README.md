@@ -29,7 +29,7 @@ The default mode starts a web server, data is retrieved via curl or through a we
 curl http://localhost:8080/package/nginx
 ```
 
-### CLI Mode
+#### CLI Mode
 
 Data can also be retrieved from the command line, using the CLI mode.
 
