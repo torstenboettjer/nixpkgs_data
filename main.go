@@ -198,7 +198,6 @@ func main() {
 		c.JSON(http.StatusOK, result)
 	})
 
-	// Start server
 	// Load config
 	config, err := loadConfig("config.json")
 	if err != nil {
@@ -213,5 +212,6 @@ func main() {
 		port = envPort
 	}
 
+	// Start server
 	r.Run(":" + port)
 }
